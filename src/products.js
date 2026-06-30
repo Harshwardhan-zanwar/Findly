@@ -1,0 +1,26 @@
+const products = [
+  { id: 1, name: "Galaxy A14", category: "Phone", price: 180, description: "Budget Android phone, 128GB storage, 50MP camera" },
+  { id: 2, name: "iPhone SE", category: "Phone", price: 429, description: "Compact iPhone with A15 chip, great performance" },
+  { id: 3, name: "Pixel 7a", category: "Phone", price: 449, description: "Google phone with excellent camera and clean Android" },
+  { id: 4, name: "OnePlus Nord 3", category: "Phone", price: 399, description: "Fast charging, AMOLED display, good for gaming" },
+  { id: 5, name: "iPhone 14", category: "Phone", price: 699, description: "Flagship iPhone with dual camera system" },
+  { id: 6, name: "Redmi Note 13", category: "Phone", price: 220, description: "Affordable phone with AMOLED display and decent camera" },
+  { id: 7, name: "MacBook Air M1", category: "Laptop", price: 850, description: "Lightweight laptop, great battery life" },
+  { id: 8, name: "Dell Inspiron 15", category: "Laptop", price: 550, description: "Reliable everyday laptop for work and study" },
+  { id: 9, name: "ASUS ROG Strix", category: "Laptop", price: 1200, description: "Gaming laptop with dedicated GPU" },
+  { id: 10, name: "Lenovo IdeaPad Slim 3", category: "Laptop", price: 450, description: "Budget laptop for students, lightweight and portable" },
+  { id: 11, name: "HP Pavilion 14", category: "Laptop", price: 600, description: "Mid-range laptop with good display and keyboard" },
+  { id: 12, name: "Sony WH-1000XM4", category: "Headphones", price: 280, description: "Noise-cancelling over-ear headphones" },
+  { id: 13, name: "Apple AirPods Pro", category: "Headphones", price: 199, description: "Wireless earbuds with active noise cancellation" },
+  { id: 14, name: "boAt Rockerz 450", category: "Headphones", price: 30, description: "Budget wireless headphones, good battery life" },
+  { id: 15, name: "JBL Tune 510BT", category: "Headphones", price: 40, description: "Affordable on-ear wireless headphones with long battery" },
+  { id: 16, name: "Apple Watch SE", category: "Wearable", price: 249, description: "Fitness tracking smartwatch with iPhone integration" },
+  { id: 17, name: "Mi Band 8", category: "Wearable", price: 35, description: "Affordable fitness band with long battery life" },
+  { id: 18, name: "Samsung Galaxy Watch 6", category: "Wearable", price: 299, description: "Advanced health tracking smartwatch for Android users" },
+  { id: 19, name: "iPad 10th Gen", category: "Tablet", price: 449, description: "Versatile tablet for media and light productivity" },
+  { id: 20, name: "Samsung Galaxy Tab A9", category: "Tablet", price: 180, description: "Budget Android tablet for browsing and media" },
+  { id: 21, name: "Logitech MX Master 3S", category: "Accessory", price: 99, description: "Premium wireless mouse for productivity" },
+  { id: 22, name: "Anker PowerCore 20000", category: "Accessory", price: 45, description: "High-capacity portable power bank, fast charging" },
+];
+
+export default products;
