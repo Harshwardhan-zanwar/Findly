@@ -1,25 +1,93 @@
-# AI Product Recommender
+# 🔍 Findly — AI-Powered Product Recommender
 
-A React app that lets users describe what they're looking for in plain language, and uses OpenAI's GPT model to recommend matching products from a catalog.
+Findly lets users describe what they're looking for in plain English and uses LLM reasoning to instantly match and rank the best products from a catalog — no manual filtering, no dropdowns, just natural language.
+
+Built with **React (Vite)**, **Vercel Serverless Functions**, and the **Groq API (`openai/gpt-oss-120b`)**.
+
+---
+
+## Features
+
+- **Natural language matching** — type something like *"a fast-charging phone with AMOLED display under \$400"* and get ranked, relevant results.
+- **Server-side API key** — the Groq key never reaches the browser; all LLM calls go through a Vercel serverless function (`/api/recommend`).
+- **Clean, fast UI** — minimal dark-themed interface with loading and error states built in.
+- **Easy to extend** — product catalog is a single static file (`src/products.js`); add or edit products without touching app logic.
+
+---
 
 ## How it works
-- A static catalog of 15 products (phones, laptops, headphones, wearables, tablets) is defined in `src/products.js`.
-- The user enters their OpenAI API key (client-side, never stored) and a preference like "I want a phone under $500".
-- The app sends the full product list + user query to OpenAI's `gpt-4o-mini` model, asking it to return the IDs of the best-matching products.
-- Matched products are displayed at the top, with the full catalog shown below.
 
-## Run locally
 ```
+User types query
+      ↓
+React frontend (Vite) sends POST request with query + product catalog
+      ↓
+/api/recommend (Vercel serverless function)
+      ↓
+Formats prompt → calls Groq API (gpt-oss-120b) with server-side key
+      ↓
+Groq returns ranked product IDs as JSON
+      ↓
+Frontend matches IDs back to catalog and renders results
+```
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | React, Vite |
+| Backend | Vercel Serverless Functions (Node.js) |
+| LLM | Groq API — `openai/gpt-oss-120b` |
+| Styling | CSS (custom, no framework) |
+
+---
+
+## Project Structure
+
+```
+├── api/
+│   └── recommend.js      # Serverless function — calls Groq, keeps API key server-side
+├── public/                # Static assets
+├── src/
+│   ├── App.jsx             # Main app logic and UI
+│   ├── App.css             # Styling
+│   ├── main.jsx             # React entry point
+│   └── products.js         # Static product catalog
+├── .env.local                # Local secret key (gitignored)
+├── .gitignore
+└── package.json
+```
+
+---
+
+## Local Development
+
+**1. Clone and install**
+```bash
+git clone https://github.com/Harshwardhan-zanwar/Findly.git
+cd Findly
 npm install
-npm run dev
 ```
 
-## Deploy to Vercel
-1. Push this folder to a GitHub repo.
-2. Go to vercel.com -> New Project -> Import the repo.
-3. Framework preset: Vite (auto-detected). No environment variables needed since the API key is entered in the UI.
-4. Deploy.
+**2. Add your Groq API key**
+
+Create `.env.local` in the project root:
+```env
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+**3. Run with Vercel CLI**
+
+Plain `vite dev` can't run the `/api` serverless function, so use the Vercel CLI instead — it runs the frontend and the API together, exactly as it behaves in production:
+```bash
+npm install -g vercel
+vercel dev
+```
+Open the local URL it prints (typically `http://localhost:3000`).
+
+---
 
 ## Notes
-- The OpenAI API key is entered directly in the UI for simplicity (no backend/serverless function needed for this assignment). In a production app, this call would be proxied through a backend to avoid exposing the key client-side.
-- Model used: gpt-4o-mini (fast, cheap, sufficient for this matching task).
+- The product catalog in `src/products.js` is static/dummy data for demo purposes; swap it for a real database or API as needed.
